@@ -2,12 +2,66 @@
 <html>
 
 <head>
+
+  <!-- apple web app capable -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <script>
+    function BlockMove(event) {
+      event.preventDefault();
+    }
+  </script>
+  <link rel="apple-touch-startup-image" href="/assets/startup.png">
+
+  <!-- Site title -->
   <meta charset="utf-8">
   <title>Capture</title>
+
+  <!-- load fonts from typekit -->
+  <script src="https://use.typekit.net/cek6xpo.js"></script>
+  <script>
+    try {
+      Typekit.load({
+        async: true
+      });
+    } catch (e) {}
+  </script>
+
+  <!-- stylesheets -->
+  <link rel="stylesheet" href="/styles/main.min.css">
+
+  <!-- vendors -->
+  <script src="vendors/angular.min.js" charset="utf-8"></script>
+  <script src="vendors/angular-route.min.js" charset="utf-8"></script>
+  <script src="vendors/jquery.min.js" charset="utf-8"></script>
+  <script src="vendors/jspdf.min.js" charset="utf-8"></script>
+
+  <!-- Scripts -->
+
+  <!-- app config -->
+  <script src="scripts/captureApp.js" charset="utf-8"></script>
+
+  <!-- servvices -->
+  <script src="scripts/services/goService.js" charset="utf-8"></script>
+  <script src="scripts/services/watsonService.js" charset="utf-8"></script>
+  <script src="scripts/services/authService.js" charset="utf-8"></script>
+
+  <!-- controllers -->
+  <script src="scripts/controllers/searchController.js" charset="utf-8"></script>
+  <script src="scripts/controllers/AuthController.js" charset="utf-8"></script>
+
 </head>
 
-<body>
-  <h1>Capture</h1>
+<body ng-app="myApp" ontouchmove="BlockMove(event)">
+
+  <div class="searchBar" id="searchBar">
+    <input type="text" class="searchInput" placeholder="Search">
+    <a href="#" class="searchButton"><img src="assets/search-icon.png" alt=""></a>
+  </div>
+  <div class="offsetSearchBar" id="offsetSearchBar">
+
+  </div>
+  <ng-view></ng-view>
 </body>
 
 </html>
