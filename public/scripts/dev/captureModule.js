@@ -13,5 +13,8 @@ app.config(function($routeProvider) {
     .when('/capture', {
       templateUrl: 'views/partials/capture.html',
       controller: 'captureController as cc'
+    })
+    .when('/success', {
+      templateUrl: 'views/partials/success.html'
     });
 });
