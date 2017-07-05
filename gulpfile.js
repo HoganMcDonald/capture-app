@@ -5,7 +5,8 @@ const gulp = require('gulp'),
   babel = require('gulp-babel'),
   sass = require('gulp-sass'),
   autoprefixer = require('gulp-autoprefixer'),
-  cleanCSS = require('gulp-clean-css');
+  cleanCSS = require('gulp-clean-css'),
+  ngGraph = require('gulp-angular-architecture-graph');
 //end required
 
 //tasks
@@ -33,13 +34,28 @@ gulp.task('styles', () => {
     .pipe(cleanCSS({
       compatibility: '*'
     }))
+    .pipe(rename({
+      suffix: '.min'
+    }))
     .pipe(gulp.dest('public/styles'));
+});
+
+gulp.task('angular-map', () => {
+  gulp.src('public/scripts/dev/*.js')
+    .pipe(ngGraph({
+      dest: 'architecture',
+      hideAngularServices: false
+    }));
 });
 //end tasks
 
 //watch
-gulp.task('styles:watch', () => {
+gulp.task('watch:styles', () => {
   gulp.watch('public/styles/sass/*.sass', ['styles']);
+});
+
+gulp.task('watch:scripts', () => {
+  gulp.watch('public/scripts/dev/*', ['scripts']);
 });
 
 //default task

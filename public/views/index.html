@@ -37,31 +37,36 @@
   <script src="vendors/jspdf.min.js" charset="utf-8"></script>
 
   <!-- Scripts -->
-
+  <script src="scripts/product/client-files/interactive-elements.min.js" charset="utf-8"></script>
   <!-- app config -->
-  <script src="scripts/captureApp.js" charset="utf-8"></script>
+  <script src="scripts/product/captureModule.min.js" charset="utf-8"></script>
 
   <!-- servvices -->
-  <script src="scripts/services/goService.js" charset="utf-8"></script>
-  <script src="scripts/services/watsonService.js" charset="utf-8"></script>
-  <script src="scripts/services/authService.js" charset="utf-8"></script>
 
   <!-- controllers -->
-  <script src="scripts/controllers/searchController.js" charset="utf-8"></script>
-  <script src="scripts/controllers/AuthController.js" charset="utf-8"></script>
+  <script src="scripts/product/controllers/authController.min.js" charset="utf-8"></script>
+  <script src="scripts/product/controllers/mainController.min.js" charset="utf-8"></script>
 
 </head>
 
-<body ng-app="myApp" ontouchmove="BlockMove(event)">
+<body ng-app="myApp" ng-controller="MainController as mc" ontouchmove="BlockMove(event)">
 
   <div class="searchBar" id="searchBar">
-    <input type="text" class="searchInput" placeholder="Search">
-    <a href="#" class="searchButton"><img src="assets/search-icon.png" alt=""></a>
+    <input class="searchBarInput fix-viewport-vh" placeholder="Search"></input>
+    <img src="assets/search-icon.png" alt="" class="searchButton">
   </div>
-  <div class="offsetSearchBar" id="offsetSearchBar">
+  <div class="searchBarOffset" id="searchBarOffset"></div>
 
-  </div>
   <ng-view></ng-view>
+
+
+  <div class="navBarOffset"></div>
+  <div class="navBar">
+    <button type="button" class="navButton feedButton">FEED</button>
+    <button type="button" class="navButton captureButton">CAPTURE</button>
+    <button type="button" class="navButton logoutButton">LOGOUT</button>
+  </div>
+
 </body>
 
 </html>
