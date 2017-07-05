@@ -1,3 +1,3 @@
-app.controller('MainController', function() {
-  console.log('ng');
+app.controller('mainController', function() {
+  console.log('mainController');
 });

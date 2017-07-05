@@ -1,0 +1,42 @@
+.capturePage
+  height: 83vh
+  display: flex
+  align-items: center
+  justify-content: center
+
+.captureTextButton
+  display: block
+  margin: auto
+  margin-top: 5vw
+
+.captureText
+  display: block
+  margin: auto
+  margin-top: 5vw
+  resize: none
+  width: 60vw
+  border:
+    style: solid
+    width: 4px
+    color: $textAreaBorder
+  +appFont(4vw)
+  &:focus
+    outline: none
+
+.submitButton
+  display: block
+  margin: auto
+  margin-top: 5vw
+  width: 30vw
+  height: 8vw
+  border:
+    radius: 4vw
+    width: 0
+  +appFont(3vw)
+  background-color: $submitButtonBackgroundInactive
+  color: $submitButtonTextColor
+
+.captureImageButton
+  display: block
+  margin: auto
+  margin-top: 5vw
