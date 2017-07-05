@@ -11,15 +11,22 @@
   display: block
   margin: auto
 
-.loginInput
-  display: block
-  margin: auto
+.fullWidthInput
   margin-top: 5vw
   text-align: center
   background-color: $fullWidthInputInactive
-  width: 92vw
+  width: 96vw
   border: none
+  border-radius: 0
+  padding: 2vw
   +appFont(7vw)
+  &:focus
+    outline: none
+    background-color: $fullWidthInputActive
+
+.loginInput
+  display: block
+  margin: auto
 
 .loginButton
   display: block
