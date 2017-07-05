@@ -1,14 +1,19 @@
 @import variables
 
-body html
+html body
   margin: 0px
   height: 100%
   width: 100%
   overflow: hidden
 
+.standardButton
+  height: 8vh
+  width: 40vw
+  background-color: $buttonInactive
+  border: none
+  padding: 0
+  +appFont(4vh)
+  color: $buttonText
+
 @import navBars
-
-
-
-h1
-  +appFont(100pt)
+@import login
