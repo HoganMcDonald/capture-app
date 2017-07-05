@@ -43,6 +43,7 @@
   <script src="scripts/dev/captureModule.js" charset="utf-8"></script>
 
   <!-- servvices -->
+  <script src="scripts/dev/services/go.js" charset="utf-8"></script>
 
   <!-- controllers -->
   <script src="scripts/dev/controllers/authController.js" charset="utf-8"></script>
@@ -51,19 +52,18 @@
 
 </head>
 
-<body ng-app="myApp" ng-controller="mainController as mc" ontouchmove="BlockMove(event)">
-
-  <div class="searchBar" id="searchBar">
+<body ng-app="myApp" ng-controller="mainController as mc" ng-init="mc.checkCurrentLocation()" ontouchmove="BlockMove(event)">
+  <div class="searchBar" id="searchBar" ng-if="mc.showNavBar">
     <input class="searchBarInput fix-viewport-vh" placeholder="Search">
     <img src="assets/search-icon.png" alt="" class="searchButton">
   </div>
-  <div class="searchBarOffset" id="searchBarOffset"></div>
+  <div class="searchBarOffset" id="searchBarOffset" ng-if="mc.showNavBar"></div>
 
   <ng-view></ng-view>
 
 
-  <div class="navBarOffset"></div>
-  <div class="navBar">
+  <div class="navBarOffset" ng-if="mc.showNavBar"></div>
+  <div class="navBar" ng-if="mc.showNavBar">
     <button type="button" class="navButton feedButton">FEED</button>
     <button type="button" class="navButton captureButton">CAPTURE</button>
     <button type="button" class="navButton logoutButton">LOGOUT</button>
