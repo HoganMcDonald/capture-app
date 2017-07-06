@@ -53,9 +53,10 @@
 </head>
 
 <body ng-app="myApp" ng-controller="mainController as mc" ng-init="mc.checkCurrentLocation()" ontouchmove="BlockMove(event)">
+
   <div class="searchBar" id="searchBar" ng-if="mc.showNavBar">
     <input class="searchBarInput fix-viewport-vh" placeholder="Search">
-    <img src="assets/search-icon.png" alt="" class="searchButton">
+    <img src="assets/search-icon.png" ng-click="mc.searchSnippets()" class="searchButton">
   </div>
   <div class="searchBarOffset" id="searchBarOffset" ng-if="mc.showNavBar"></div>
 
@@ -64,9 +65,9 @@
 
   <div class="navBarOffset" ng-if="mc.showNavBar"></div>
   <div class="navBar" ng-if="mc.showNavBar">
-    <button type="button" class="navButton feedButton">FEED</button>
-    <button type="button" class="navButton captureButton">CAPTURE</button>
-    <button type="button" class="navButton logoutButton">LOGOUT</button>
+    <button type="button" class="navButton feedButton" ng-if="mc.showFeedButton" ng-click="mc.goToFeed()">FEED</button>
+    <button type="button" class="navButton captureButton" ng-if="mc.showFeedButton == false" ng-click="mc.goToCapture()">CAPTURE</button>
+    <button type="button" class="navButton logoutButton" ng-click="mc.goToLogin()">LOGOUT</button>
   </div>
 
 </body>

@@ -1,0 +1,14 @@
+digraph dependencies {
+  node[shape="ellipse",style="filled",colorscheme=set312]
+
+  
+    "myApp"[label="myApp", fillcolor=1]
+  
+
+  node[shape="ellipse",style="filled",fillcolor=2]
+  
+    
+      "ngRoute" -> "myApp"
+    
+  
+}

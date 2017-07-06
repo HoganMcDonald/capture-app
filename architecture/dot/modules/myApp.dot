@@ -1,0 +1,56 @@
+digraph dependencies {
+  node[shape="component",style="filled",colorscheme=set312]
+
+
+    node[shape="component"]
+    "myApp"[label="myApp", fillcolor=1]
+
+    
+      "ngRoute"[label="ngRoute", fillcolor=1]
+      "ngRoute" -> "myApp"
+    
+
+
+    node[shape="ellipse"]
+    
+
+
+    
+
+    
+
+    
+
+    node[shape="rectangle"]
+    
+
+    node[shape="note"]
+    
+
+    node[shape="folder"]
+    
+
+
+
+
+
+
+
+    node[shape="ellipse",style="filled", fillcolor=11]
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+    
+
+
+}

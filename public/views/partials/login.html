@@ -3,7 +3,7 @@
     <img src="apple-touch-icon.png" alt="" class="loginIcon">
     <input type="text" placeholder="username" class="loginInput fullWidthInput">
     <input type="password" placeholder="password" class="loginInput fullWidthInput">
-    <button type="button" class="standardButton loginButton">LOGIN</button>
-    <a href="/register" class="registerLink">Register</a>
+    <button type="button" class="standardButton loginButton" ng-click="ac.login(); mc.checkCurrentLocation()">LOGIN</button>
+    <a href="/#!/register" ng-click="mc.checkCurrentLocation()" class="registerLink">Register</a>
   </div>
 </div>

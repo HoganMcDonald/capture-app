@@ -3,6 +3,7 @@ app.service('go', function($location) {
 
   //takes a url and changes $location
   vm.to = function(url) {
-    $location.url();
+    $location.url(url);
   }; // end to
+
 });
