@@ -1,9 +1,14 @@
 <div class="capturePage">
   <div class="container">
-    <button type="button" class="standardButton captureTextButton">TEXT</button>
-    <textarea name="name" rows="8" cols="80" class="captureText">Type Here</textarea>
-    <button type="button" class="submitButton" ng-click="cc.goToSuccess(); mc.checkCurrentLocation()">SUBMIT</button>
-    <button type="button" class="standardButton captureImageButton">IMAGE</button>
-    <button type="button" class="submitButton" ng-click="cc.goToSuccess(); mc.checkCurrentLocation()">SUBMIT</button>
+    <!-- Upload text -->
+    <button type="button" class="standardButton captureTextButton" ng-click="cc.uploadText()">TEXT</button>
+
+    <textarea name="name" rows="8" cols="80" ng-if="cc.captureText" class="captureText" placeholder="Text Here"></textarea>
+    <button type="button" class="submitButton" ng-if="cc.captureText" ng-click="cc.goToSuccess(); mc.checkCurrentLocation()">SUBMIT</button>
+
+    <!-- Upload image -->
+    <button type="button" class="standardButton captureImageButton" ng-click="cc.uploadImage()">IMAGE</button>
+
+    <button type="button" class="submitButton" ng-if="cc.captureImage" ng-click="cc.goToSuccess(); mc.checkCurrentLocation()">SUBMIT</button>
   </div>
 </div>

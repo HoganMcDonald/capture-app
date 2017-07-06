@@ -9,10 +9,10 @@ app.controller('mainController', function($location, go) {
   //watches current location and sets vm.showNavBar accordingly
   vm.checkCurrentLocation = function() {
     console.log($location.url());
-    if ($location.url() == '/' || $location.url() == '/register') {
+    if ($location.url() === '/' || $location.url() === '/register' || $location.url() === '') {
       vm.showNavBar = false;
       vm.showFeedButton = true;
-    } else if ($location.url() == '/feed') {
+    } else if ($location.url() === '/feed') {
       vm.showNavBar = true;
       vm.showFeedButton = false;
     } else {

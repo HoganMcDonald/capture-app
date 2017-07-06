@@ -16,5 +16,9 @@ app.config(function($routeProvider) {
     })
     .when('/success', {
       templateUrl: 'views/partials/success.html'
+    })
+    .when('/feed', {
+      templateUrl: 'views/partials/feed.html',
+      controller: 'feedController as fc'
     });
 });

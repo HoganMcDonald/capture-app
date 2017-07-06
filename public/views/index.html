@@ -6,11 +6,6 @@
   <!-- apple web app capable -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <script>
-    function BlockMove(event) {
-      event.preventDefault();
-    }
-  </script>
   <link rel="apple-touch-startup-image" href="/assets/startup.png">
 
   <!-- Site title -->
@@ -49,10 +44,11 @@
   <script src="scripts/dev/controllers/authController.js" charset="utf-8"></script>
   <script src="scripts/dev/controllers/mainController.js" charset="utf-8"></script>
   <script src="scripts/dev/controllers/captureController.js" charset="utf-8"></script>
+  <script src="scripts/dev/controllers/feedController.js" charset="utf-8"></script>
 
 </head>
 
-<body ng-app="myApp" ng-controller="mainController as mc" ng-init="mc.checkCurrentLocation()" ontouchmove="BlockMove(event)">
+<body ng-app="myApp" ng-controller="mainController as mc" ng-init="mc.checkCurrentLocation()">
 
   <div class="searchBar" id="searchBar" ng-if="mc.showNavBar">
     <input class="searchBarInput fix-viewport-vh" placeholder="Search">

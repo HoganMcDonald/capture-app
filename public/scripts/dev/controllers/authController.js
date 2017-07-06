@@ -7,4 +7,8 @@ app.controller('authController', function(go) {
     go.to('/capture');
   }; //end login
 
+  //register new user
+  vm.register = function() {
+    go.to('/');
+  }; //end register new user
 });
