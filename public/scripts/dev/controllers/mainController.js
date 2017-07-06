@@ -38,4 +38,5 @@ app.controller('mainController', function($location, go) {
     go.to('/');
     vm.checkCurrentLocation();
   };
+
 });
