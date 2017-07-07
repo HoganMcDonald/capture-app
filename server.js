@@ -1,7 +1,7 @@
 //required
 const express = require('express'),
   app = express(),
-  user = require('./modules/user.js'),
+  register = require('./modules/register.js'),
   index = require('./modules/index.js');
 
 const port = process.env.PORT || 8888;
@@ -9,7 +9,7 @@ const port = process.env.PORT || 8888;
 //uses
 app.use(express.static('public'));
 app.use('/', index);
-app.use('/user', user);
+app.use('/register', register);
 
 // spin up server
 app.listen(port, () => {

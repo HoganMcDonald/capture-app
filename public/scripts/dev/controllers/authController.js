@@ -14,7 +14,7 @@ app.controller('authController', function(go, $http) {
       password: 'hogan'
     };
 
-    $http.post('/user', obj).then((response) => {
+    $http.post('/', obj).then((response) => {
       console.log(response);
       go.to('/capture');
     });
@@ -35,7 +35,7 @@ app.controller('authController', function(go, $http) {
       email: 'hogan@hogan.com'
     }
 
-    $http.post('user/' + id, obj).then((response) => {
+    $http.post('/register', obj).then((response) => {
       console.log(response);
       go.to('/');
     });
