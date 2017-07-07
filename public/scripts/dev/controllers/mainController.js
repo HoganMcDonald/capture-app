@@ -23,6 +23,8 @@ app.controller('mainController', function($location, go) {
 
   //read local storage to see if user is logged in
 
+  //init function
+
 
   vm.goToFeed = function() {
     go.to('/feed');

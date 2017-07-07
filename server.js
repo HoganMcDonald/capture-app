@@ -1,15 +1,15 @@
 //required
 const express = require('express'),
   app = express(),
-  index = require('./modules/index.js'),
-  snippet = require('./modules/snippet.js');
+  user = require('./modules/user.js'),
+  index = require('./modules/index.js');
 
 const port = process.env.PORT || 8888;
 
 //uses
 app.use(express.static('public'));
 app.use('/', index);
-// app.use('/snippet', snippet);
+app.use('/user', user);
 
 // spin up server
 app.listen(port, () => {
