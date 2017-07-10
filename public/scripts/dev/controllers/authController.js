@@ -10,14 +10,19 @@ app.controller('authController', function(go, $http) {
 
     //object to send
     let obj = {
-      username: 'hogan',
-      password: 'hogan'
+      username: vm.username,
+      password: vm.password
     };
 
+    //send request to server
     $http.post('/', obj).then((response) => {
-      console.log(response);
-      go.to('/capture');
-    });
+      if (response.data === 'error') {
+        vm.username = 'Username or Password Incorrect';
+        vm.password = '';
+      } else {
+        go.to('/capture');
+      }
+    }); //end $http
 
   }; //end login
 
@@ -27,12 +32,12 @@ app.controller('authController', function(go, $http) {
   //register new user
   vm.register = function() {
 
-    if (!vm.password0 === vm.password1) {
+    if (vm.password0 != vm.password1) {
       vm.password0 = '';
       vm.password1 = '';
       vm.username = 'Passwords Don\'t Match';
       vm.email = '';
-    } else if (vm.username.length <= 0) {
+    } else if (!vm.username) {
       vm.password0 = '';
       vm.password1 = '';
       vm.username = 'Must Enter Username';
@@ -60,7 +65,5 @@ app.controller('authController', function(go, $http) {
       });
     }
   }; //end register new user
-
-
 
 });

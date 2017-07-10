@@ -32,8 +32,16 @@ $snippetShaddowColor: #e2e2e2
 //mixins
 ////////////
 
+@font-face
+  font-family: 'adam'
+  src: url('/assets/adam-font.otf')
+
+@import url( 'https://fonts.googleapis.com/css?family=Roboto|Ubuntu' )
+
+//Futura pt
+
 =appFont($size)
   font:
-    family: 'futura pt'
-    weight: 400
+    family: 'Roboto'
+    weight: 200
     size: $size

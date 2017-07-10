@@ -6,20 +6,6 @@ const express = require('express'),
   Sequelize = require('sequelize'),
   pg = require('pg');
 
-
-
-// const sequelize = new Sequelize('postgres://@127.0.0.1:5432/capture');
-//
-// //auth connection to DB
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log('Connection has been established successfully.');
-//   })
-//   .catch(err => {
-//     console.error('Unable to connect to the database:', err);
-//   }); //end db auth
-
 //uses
 router.use(bodyParser.urlencoded({
   extended: true
@@ -61,48 +47,3 @@ router.post('/', (req, res) => {
 
 //export
 module.exports = router;
-
-
-
-
-
-// ////////////// notes
-//check if username exists
-
-//if no, insert into users
-//get id from new user
-//insert into buckets
-//return "user created"
-
-//if yes, return "username is taken"
-
-
-
-
-
-
-// router.post('/:id', (req, res) => {
-//   var usernameExists = false;
-//   //make query
-// pool.connect(function(err, connection, done) {
-//   if (err) {
-//     console.log(err);
-//     done();
-//   } else {
-//     var results = [];
-//     var checkUsername = connection.query("SELECT * FROM users WHERE id = $1", [req.params.id]);
-//     checkUsername.on('row', function(row) {
-//       results.push(row);
-//     });
-//     checkUsername.on('end', function() {
-//       if (results) {
-//         usernameExists = true;
-//         console.log(usernameExists);
-//       }
-//       done();
-//     });
-//   } //end if else
-// }); //end pool.connect
-//   console.log(usernameExists);
-//   res.send('user/post/id');
-// });

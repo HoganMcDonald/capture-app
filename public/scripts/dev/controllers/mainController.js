@@ -7,7 +7,7 @@ app.controller('mainController', function($location, go) {
   vm.showFeedButton = true;
 
   //watches current location and sets vm.showNavBar accordingly
-  vm.checkCurrentLocation = function() {
+  vm.checkCurrentLocation = function(boolean) {
     console.log($location.url());
     if ($location.url() === '/' || $location.url() === '/register' || $location.url() === '') {
       vm.showNavBar = false;
@@ -16,6 +16,11 @@ app.controller('mainController', function($location, go) {
       vm.showNavBar = true;
       vm.showFeedButton = false;
     } else {
+      vm.showNavBar = true;
+      vm.showFeedButton = true;
+    }
+
+    if (boolean) {
       vm.showNavBar = true;
       vm.showFeedButton = true;
     }
