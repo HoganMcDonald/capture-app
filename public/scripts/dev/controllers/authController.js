@@ -27,19 +27,38 @@ app.controller('authController', function(go, $http) {
   //register new user
   vm.register = function() {
 
-    let id = 0;
-
-    let obj = {
-      username: 'hogan',
-      password: 'hogan',
-      email: 'hogan@hogan.com'
+    if (!vm.password0 === vm.password1) {
+      vm.password0 = '';
+      vm.password1 = '';
+      vm.username = 'Passwords Don\'t Match';
+      vm.email = '';
+    } else if (vm.username.length <= 0) {
+      vm.password0 = '';
+      vm.password1 = '';
+      vm.username = 'Must Enter Username';
+      vm.email = '';
+    } else if (vm.username.includes(' ')) {
+      vm.password0 = '';
+      vm.password1 = '';
+      vm.username = 'Usernamen Can\'t Contain Spaces';
+      vm.email = '';
+    } else {
+      let obj = {
+        username: vm.username,
+        password: vm.password0,
+        email: vm.email
+      }
+      $http.post('/register', obj).then((response) => {
+        if (response.data === 'registered') {
+          go.to('/');
+        } else {
+          vm.password0 = '';
+          vm.password1 = '';
+          vm.username = response.data;
+          vm.email = '';
+        }
+      });
     }
-
-    $http.post('/register', obj).then((response) => {
-      console.log(response);
-      go.to('/');
-    });
-
   }; //end register new user
 
 

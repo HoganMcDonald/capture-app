@@ -1,9 +1,10 @@
 <div class="registerPage">
   <div class="container">
-    <input type="text" class="registerUsername fullWidthInput" placeholder="Username">
-    <input type="password" class="registerPassword1 fullWidthInput" placeholder="Password">
-    <input type="password" class="registerPassword2 fullWidthInput" placeholder="Confirm Password">
-    <input type="email" class="registerEmail fullWidthInput" placeholder="emAil">
+    <input type="text" class="registerUsername fullWidthInput" placeholder="Username" ng-model="ac.username">
+    <input type="password" class="registerPassword1 fullWidthInput" placeholder="Password" ng-model="ac.password0">
+    <input type="password" class="registerPassword2 fullWidthInput" placeholder="Confirm Password" ng-model="ac.password1">
+    <input type="email" class="registerEmail fullWidthInput" placeholder="emAil" ng-model="ac.email">
     <button type="button" class="standardButton registerButton" ng-click="ac.register()">SUBMIT</button>
+    <a href="/#!/" ng-click="mc.checkCurrentLocation()" class="loginLink">Login</a>
   </div>
 </div>
