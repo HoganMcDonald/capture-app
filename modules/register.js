@@ -3,7 +3,6 @@ const express = require('express'),
   router = express.Router(),
   bodyParser = require('body-parser'),
   db = require('./db'),
-  Sequelize = require('sequelize'),
   pg = require('pg');
 
 //uses

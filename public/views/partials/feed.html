@@ -1,26 +1,8 @@
-<div class="feedPage">
+<div class="feedPage" ng-init="sc.getBucket('feed', " + LocalStorage.getItem( 'user') + ")">
 
   <div class="container">
-    <div class="snippet">
-      <p class="snippetText">This is just a sample snippet to see what it looks like.</p>
-    </div>
-    <div class="snippet">
-      <p class="snippetText">This is just a sample snippet to see what it looks like.</p>
-    </div>
-    <div class="snippet">
-      <p class="snippetText">This is just a sample snippet to see what it looks like.</p>
-    </div>
-    <div class="snippet">
-      <p class="snippetText">This is just a sample snippet to see what it looks like.</p>
-    </div>
-    <div class="snippet">
-      <p class="snippetText">This is just a sample snippet to see what it looks like.</p>
-    </div>
-    <div class="snippet">
-      <p class="snippetText">This is just a sample snippet to see what it looks like.</p>
-    </div>
-    <div class="snippet">
-      <p class="snippetText">This is just a sample snippet to see what it looks like.</p>
+    <div class="snippet" ng-repeat="snippet in sc.snippets">
+      <p class="snippetText">{{snippet.text}}</p>
     </div>
   </div>
 
