@@ -1,5 +1,4 @@
-app.controller('captureController', function(go) {
-  console.log('captureController');
+app.controller('captureController', function(go, snippetService) {
   var vm = this;
 
   vm.captureText = false;
@@ -18,5 +17,18 @@ app.controller('captureController', function(go) {
     //capture image toggle
     vm.captureImage = !vm.captureImage;
   };
+
+  //add snippet to feed
+  vm.submitText = function() {
+    let newSnippet = {
+      bucket: 'feed',
+      user: localStorage.getItem('user'),
+      text: vm.snippetText
+    }
+    snippetService.postSnippet(newSnippet).then(function(response) {
+      console.log(response);
+    });
+  };
+
 
 });

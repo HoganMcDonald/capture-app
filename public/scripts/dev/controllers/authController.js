@@ -20,7 +20,9 @@ app.controller('authController', function(go, $http) {
         vm.username = 'Username or Password Incorrect';
         vm.password = '';
       } else {
-        localStorage.setItem('user', vm.username);
+        console.log(response);
+        localStorage.setItem('user', response.data[0].username);
+        localStorage.setItem('feedID', response.data[0].id)
         go.to('/capture');
       }
     }); //end $http

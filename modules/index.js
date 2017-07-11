@@ -27,14 +27,14 @@ router.post('/', (req, res) => {
     } else {
 
       let results = [];
-      let checkUsername = connection.query("select 1 FROM users WHERE username = $1 AND password_hash = $2", [req.body.username, req.body.password]);
+      let checkUsername = connection.query("SELECT username, buckets.id FROM users JOIN buckets ON buckets.user_name = users.username WHERE username = $1 AND password_hash = $2", [req.body.username, req.body.password]);
       checkUsername.on('row', (row) => {
         results.push(row);
       });
       checkUsername.on('end', () => {
         if (results.length > 0) {
           done();
-          res.send('success');
+          res.send(results);
         } else {
           done();
           res.send('error');

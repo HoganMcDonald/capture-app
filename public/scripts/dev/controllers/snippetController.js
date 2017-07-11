@@ -2,6 +2,7 @@ app.controller('snippetController', function(snippetService) {
   console.log('snippetController');
   let vm = this;
   vm.user = localStorage.getItem('user');
+  vm.feed = localStorage.getItem('feedID');
   vm.snippets = [];
 
 
@@ -9,15 +10,16 @@ app.controller('snippetController', function(snippetService) {
 
 
   //get all snippets by username
-  vm.getFeed = function() {
+  vm.getBucket = function(bucket_id) {
+    if (bucket_id == undefined) {
+      bucket_id = vm.feed;
+    }
     let obj = {
-      name: 'feed',
-      user: localStorage.getItem('user')
+      name: bucket_id,
+      user: vm.user
     };
-    console.log(obj);
     snippetService.getBucket(obj).then(function(response) {
       vm.snippets = response.data;
-      console.log(response.data);
     });
   }; //end getBucket
 
@@ -26,6 +28,13 @@ app.controller('snippetController', function(snippetService) {
 
 
 
+
+  //delete snippet
+  vm.deleteSnippet = function(obj) {
+    snippetService.deleteSnippet(obj.id).then(function(response) {
+      vm.getBucket(obj.bucket_id);
+    });
+  }; //end delete snippet
 
 
 });

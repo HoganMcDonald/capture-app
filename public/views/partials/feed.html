@@ -1,7 +1,7 @@
-<div class="feedPage" ng-init="sc.getFeed()">
+<div class="feedPage" ng-init="sc.getBucket(localStorage.getItem())">
 
   <div class="container">
-    <div class="snippet" ng-repeat="snippet in sc.snippets">
+    <div class="snippet" ng-repeat="snippet in sc.snippets" ng-swipe-left="sc.deleteSnippet(snippet)">
       <p class="snippetText">{{snippet.snippet_content}}</p>
     </div>
   </div>
