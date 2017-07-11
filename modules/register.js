@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
           res.send('Username already exists!')
         } else { //otherwise, create user
           let userQuery = 'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3)';
-          let feedQuery = 'INSERT INTO buckets (bucket_name, user_id) VALUES ($1, $2)';
+          let feedQuery = 'INSERT INTO buckets (bucket_name, user_name) VALUES ($1, $2)';
           connection.query(userQuery, [req.body.username, req.body.email, req.body.password]);
           connection.query(feedQuery, ["feed", req.body.username]);
           done();

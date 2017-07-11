@@ -1,7 +1,7 @@
-app.controller('snippetController', (snippetService) => {
+app.controller('snippetController', function(snippetService) {
   console.log('snippetController');
   let vm = this;
-  vm.user = LocalStorage.getItem('user');
+  vm.user = localStorage.getItem('user');
   vm.snippets = [];
 
 
@@ -9,13 +9,15 @@ app.controller('snippetController', (snippetService) => {
 
 
   //get all snippets by username
-  vm.getBucket = (bucket, username) => {
+  vm.getFeed = function() {
     let obj = {
-      name: bucket,
-      user: username
+      name: 'feed',
+      user: localStorage.getItem('user')
     };
-    snippetService.getBucket(obj).then((response) => {
-      console.log(response);
+    console.log(obj);
+    snippetService.getBucket(obj).then(function(response) {
+      vm.snippets = response.data;
+      console.log(response.data);
     });
   }; //end getBucket
 
