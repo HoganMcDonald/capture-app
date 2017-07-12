@@ -1,9 +1,10 @@
-app.controller('snippetController', function(snippetService) {
-  console.log('snippetController');
+app.controller('snippetController', function(snippetService, go) {
   let vm = this;
   vm.user = localStorage.getItem('user');
   vm.feed = localStorage.getItem('feedID');
   vm.snippets = [];
+  vm.currentSnippet = JSON.parse(localStorage.getItem('currentSnippet'));
+  console.log('snippetController', vm.currentSnippet);
 
   //get all snippets by username
   vm.getBucket = function(bucket_id) {
@@ -26,5 +27,10 @@ app.controller('snippetController', function(snippetService) {
       vm.getBucket(obj.bucket_id);
     });
   }; //end delete snippet
+
+  vm.viewSnippet = function(obj) {
+    localStorage.setItem('currentSnippet', JSON.stringify(obj));
+    go.to('/snippet');
+  }
 
 });

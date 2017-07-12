@@ -1,0 +1,12 @@
+<div class="feedPage">
+
+  <div class="container">
+    <div class="snippet">
+      <p class="snippetText">{{sc.currentSnippet.snippet_content}}</p>
+      <h2 class="watsonHeading">Percieved Emotions</h2>
+      <p ng-repeat="emotion in sc.currentSnippet.tone_info.document_tone.tone_categories[0].tones | orderBy:'score' : reverse=true | limitTo:3 ">{{emotion.tone_name}}</p>
+
+    </div>
+  </div>
+
+</div>

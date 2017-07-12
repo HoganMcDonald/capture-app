@@ -20,5 +20,9 @@ app.config(function($routeProvider) {
     .when('/feed', {
       templateUrl: 'views/partials/feed.html',
       controller: 'snippetController as sc'
+    })
+    .when('/snippet', {
+      templateUrl: 'views/partials/snippet.html',
+      controller: 'snippetController as sc'
     });
 });

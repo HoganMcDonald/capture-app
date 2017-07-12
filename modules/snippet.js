@@ -53,6 +53,7 @@ router.get('/:user/:bucketName', (req, res) => {
       let results = [];
       let checkFeed = connection.query(allSnippets, [req.params.user, req.params.bucketName]);
       checkFeed.on('row', (row) => {
+        row.tone_info = JSON.parse(row.tone_info);
         results.push(row);
       });
       checkFeed.on('end', () => {
