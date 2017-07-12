@@ -3,7 +3,34 @@ const express = require('express'),
   router = express.Router(),
   db = require('./db'),
   pg = require('pg'),
+  ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3'),
+  watsonCreds = require('./watsonCreds'),
   bodyParser = require('body-parser');
+
+//globals
+let tone_analyzer = new ToneAnalyzerV3({
+  username: watsonCreds.username,
+  password: watsonCreds.password,
+  version_date: '2016-05-19'
+});
+
+//access watson
+let analyzeTone = (string) => {
+  let params = {
+    text: string,
+    tones: ['emotion', 'social']
+  };
+  tone_analyzer.tone(params, (err, tone) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      return JSON.stringify(tone);
+    } //err check
+  }); //end tone_analyzer
+
+}; //end watson
+
 
 //uses
 router.use(bodyParser.urlencoded({
@@ -38,26 +65,38 @@ router.get('/:user/:bucketName', (req, res) => {
 
 //post snippets
 router.post('/', (req, res) => {
-  //connect to db
-  db.connect((err, connection, done) => {
+  let params = {
+    text: req.body.text,
+    tones: ['emotion', 'social']
+  };
+  tone_analyzer.tone(params, (err, tone) => {
     if (err) {
       console.log(err);
-      done();
-      res.sendStatus(400);
+      return;
     } else {
-      let results = [];
-      let checkBucketIdQuery = "SELECT id FROM buckets JOIN users ON buckets.user_name = users.username WHERE users.username= $1 AND buckets.bucket_name = $2"
-      let checkBucketId = connection.query(checkBucketIdQuery, [req.body.user, req.body.bucket]);
-      checkBucketId.on('row', (row) => {
-        results.push(row);
-      });
-      checkBucketId.on('end', () => {
-        connection.query("INSERT INTO snippets (snippet_content, bucket_id) VALUES ($1, $2);", [req.body.text, results[0].id]);
-        done();
-        res.send('posted')
-      });
-    }
-  }); //end db.connect
+      //connect to db
+      db.connect((err, connection, done) => {
+        if (err) {
+          console.log(err);
+          done();
+          res.sendStatus(400);
+        } else {
+          let results = [];
+          let checkBucketIdQuery = "SELECT id FROM buckets JOIN users ON buckets.user_name = users.username WHERE users.username= $1 AND buckets.bucket_name = $2"
+          let checkBucketId = connection.query(checkBucketIdQuery, [req.body.user, req.body.bucket]);
+          checkBucketId.on('row', (row) => {
+            results.push(row);
+          });
+          checkBucketId.on('end', () => {
+            let postQuery = "INSERT INTO snippets (snippet_content, img_url, bucket_id, tone_info) VALUES ($1, $2, $3, $4);"
+            connection.query(postQuery, [req.body.text, req.body.img_url, results[0].id, JSON.stringify(tone)]);
+            done();
+            res.send('posted')
+          });
+        }
+      }); //end db.connect
+    } //err check
+  }); //end tone_analyzer
 }); // end post new snippet
 
 //delete snippet from db

@@ -23,12 +23,13 @@ app.controller('captureController', function(go, snippetService) {
     let newSnippet = {
       bucket: 'feed',
       user: localStorage.getItem('user'),
-      text: vm.snippetText
+      text: vm.snippetText,
+      img_url: vm.snippetImg
     }
     snippetService.postSnippet(newSnippet).then(function(response) {
       console.log(response);
     });
-  };
+  }; //end submit text
 
 
 });
