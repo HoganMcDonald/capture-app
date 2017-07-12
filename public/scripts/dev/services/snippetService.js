@@ -8,6 +8,13 @@ app.service('snippetService', function($http) {
     });
   }; //end getBucket
 
+  //get buckets
+  sv.getAllBuckets = function(username) {
+    return $http.get('/bucket/' + username).then(function(response) {
+      return response;
+    }); //end http request
+  }; //end get all buckets
+
   //post new snippet
   sv.postSnippet = function(obj) {
     return $http.post('/snippet', obj).then(function(response) {

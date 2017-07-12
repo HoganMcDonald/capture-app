@@ -14,24 +14,6 @@ let tone_analyzer = new ToneAnalyzerV3({
   version_date: '2016-05-19'
 });
 
-//access watson
-let analyzeTone = (string) => {
-  let params = {
-    text: string,
-    tones: ['emotion', 'social']
-  };
-  tone_analyzer.tone(params, (err, tone) => {
-    if (err) {
-      console.log(err);
-      return;
-    } else {
-      return JSON.stringify(tone);
-    } //err check
-  }); //end tone_analyzer
-
-}; //end watson
-
-
 //uses
 router.use(bodyParser.urlencoded({
   extended: true

@@ -1,4 +1,4 @@
-<div class="feedPage" ng-init="sc.getBucket(localStorage.getItem())">
+<div class="feedPage" ng-init="sc.getBucket(localStorage.getItem()); sc.getBuckets(sc.user)">
 
   <div class="container">
     <div class="snippet" ng-repeat="snippet in sc.snippets" ng-swipe-left="sc.deleteSnippet(snippet)" ng-click="sc.viewSnippet(snippet); mc.checkCurrentLocation()">
