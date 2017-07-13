@@ -5,6 +5,8 @@ app.controller('snippetController', function(snippetService, go, $http) {
   vm.snippets = [];
   vm.buckets = [];
   vm.currentSnippet = JSON.parse(localStorage.getItem('currentSnippet'));
+  //used for fixxing local storage error " unexpected token u..." \/
+  // vm.currentBucket = localStorage.getItem('currentBucket');
   vm.currentBucket = JSON.parse(localStorage.getItem('currentBucket'));
   vm.currentBucketName = vm.currentBucket.bucket_name;
   vm.currentBucketDescription = '';
@@ -46,14 +48,13 @@ app.controller('snippetController', function(snippetService, go, $http) {
   vm.getBuckets = function(username) {
     snippetService.getAllBuckets(username).then(function(response) {
       vm.buckets = response.data;
-      console.log(vm.buckets);
     }); //end get all buckets service
   }; //end get all buckets
 
   //delete snippet
   vm.deleteSnippet = function(obj) {
     snippetService.deleteSnippet(obj.id).then(function(response) {
-      vm.getBucket(obj.bucket_id);
+      vm.getBucket(vm.currentBucket);
     });
   }; //end delete snippet
 
@@ -86,7 +87,6 @@ app.controller('snippetController', function(snippetService, go, $http) {
       bucketId: newBucket.id
     };
     $http.put('/snippet', obj).then(function(response) {
-      console.log(response);
       go.to('/feed');
     }); //end http
   }; //end update bucket for snippet

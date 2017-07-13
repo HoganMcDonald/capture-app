@@ -24,7 +24,6 @@ app.service('snippetService', function($http) {
 
   //delete snippet by snippet id
   sv.deleteSnippet = function(id) {
-    console.log(id);
     return $http.delete('/snippet/' + id).then(function(response) {
       return response;
     }); //end $http
