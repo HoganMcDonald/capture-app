@@ -22,7 +22,7 @@ app.controller('authController', function(go, $http) {
       } else {
         console.log(response);
         localStorage.setItem('user', response.data[0].username);
-        localStorage.setItem('feedID', response.data[0].id)
+        localStorage.setItem('feed', JSON.stringify(response.data[0]));
         go.to('/capture');
       }
     }); //end $http

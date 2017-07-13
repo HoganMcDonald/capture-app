@@ -46,4 +46,9 @@ app.controller('mainController', function($location, go) {
     vm.checkCurrentLocation();
   };
 
+  vm.goToMakeNewBucket = function() {
+    go.to('/newBucket');
+    vm.checkCurrentLocation();
+  };
+
 });

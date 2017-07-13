@@ -24,5 +24,9 @@ app.config(function($routeProvider) {
     .when('/snippet', {
       templateUrl: 'views/partials/snippet.html',
       controller: 'snippetController as sc'
+    })
+    .when('/newBucket', {
+      templateUrl: 'views/partials/newBucket.html',
+      controller: 'snippetController as sc'
     });
 });

@@ -1,10 +1,36 @@
 .feedPage
-  // height: 83vh
   padding: 5vw
-  // padding-bottom: 12vh
-  // display: flex
-  // align-items: center
-  // justify-content: center
+
+.controlls
+  text-align: center
+  margin: auto
+  margin-top: 5vw
+  display: flex
+  align-items: center
+  justify-content: center
+
+.bucketSelect
+  +appFont(4vw)
+  border: 2px solid $selectColor
+  color: $selectColor
+  background-color: $selectBackgroudColor
+  border-radius: 0
+  &:focus
+    outline: 0
+
+.goButton
+  display: block
+  margin-left: 5vw
+  width: 20vw
+  height: 8vw
+  border:
+    radius: 4vw
+    width: 0
+  +appFont(3vw)
+  background-color: $submitButtonBackgroundInactive
+  color: $submitButtonTextColor
+  &:focus
+    outline: 0
 
 .snippet
   // opacity: 0

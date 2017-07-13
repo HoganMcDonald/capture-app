@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
           let userQuery = 'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3)';
           let feedQuery = 'INSERT INTO buckets (bucket_name, user_name) VALUES ($1, $2)';
           connection.query(userQuery, [req.body.username, req.body.email, req.body.password]);
-          connection.query(feedQuery, ["feed", req.body.username]);
+          connection.query(feedQuery, ["Feed", req.body.username]);
           done();
           res.send('registered');
         }

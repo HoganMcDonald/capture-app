@@ -32,6 +32,21 @@ router.get('/:username', (req, res) => {
   }); //end db.connect
 }); //end get by username
 
+router.post('/', (req, res) => {
+  console.log(req.body);
+  db.connect((err, connection, done) => {
+    if (err) {
+      console.log(err);
+      done();
+      res.sendStatus(400);
+    } else {
+      connection.query('INSERT INTO buckets (bucket_name, bucket_description, user_name) VALUES ($1, $2, $3)', [req.body.name, req.body.description, req.body.user]);
+      done();
+      res.send('posted');
+    }
+  }); //end db.connect
+}); //end post new bucket
+
 
 //exports
 module.exports = router;

@@ -1,4 +1,15 @@
-<div class="feedPage" ng-init="sc.getBucket(localStorage.getItem()); sc.getBuckets(sc.user)">
+<div class="feedPage" ng-init="sc.getBucket(); sc.getBuckets(sc.user)">
+
+  <div class="controlls">
+    <select class="bucketSelect" ng-model="sc.currentBucket">
+      <option ng-repeat="bucket in sc.buckets" value="{{bucket}}">{{bucket.bucket_name}}</option>
+    </select>
+
+    <button type="button" class="goButton" ng-click="sc.getBucket(sc.currentBucket)">GO</button>
+    <button type="button" class="goButton" ng-click="mc.goToMakeNewBucket()">NEW BUCKET</button>
+  </div>
+
+  <h1 class="bucketHeading">{{sc.currentBucketName}}</h1>
 
   <div class="container">
     <div class="snippet" ng-repeat="snippet in sc.snippets" ng-swipe-left="sc.deleteSnippet(snippet)" ng-click="sc.viewSnippet(snippet); mc.checkCurrentLocation()">

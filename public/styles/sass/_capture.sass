@@ -17,11 +17,13 @@
   width: 60vw
   border:
     style: solid
-    width: 4px
+    width: 1px
     color: $textAreaBorder
   +appFont(4vw)
+  transition-duration: 500ms
   &:focus
     outline: none
+    box-shadow: 0px 0px 10vw 2vw $snippetShaddowColor
 
 .submitButton
   display: block
