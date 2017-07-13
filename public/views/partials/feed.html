@@ -10,6 +10,7 @@
   </div>
 
   <h1 class="bucketHeading">{{sc.currentBucketName}}</h1>
+  <h2 class="bucketHeading2" ng-if="sc.currentBucketDescription">{{sc.currentBucketDescription}}</h2>
 
   <div class="container">
     <div class="snippet" ng-repeat="snippet in sc.snippets" ng-swipe-left="sc.deleteSnippet(snippet)" ng-click="sc.viewSnippet(snippet); mc.checkCurrentLocation()">

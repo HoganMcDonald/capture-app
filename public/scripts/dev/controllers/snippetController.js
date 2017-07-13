@@ -7,10 +7,12 @@ app.controller('snippetController', function(snippetService, go, $http) {
   vm.currentSnippet = JSON.parse(localStorage.getItem('currentSnippet'));
   vm.currentBucket = JSON.parse(localStorage.getItem('currentBucket'));
   vm.currentBucketName = vm.currentBucket.bucket_name;
+  vm.currentBucketDescription = '';
 
   //called when first navigated to
   vm.setCurrentBucketToFeed = function() {
     vm.currentBucket = vm.feed;
+    vm.currentBucketDescription = '';
   }; //end set current bucket to feed
 
   //get all snippets by username
@@ -36,6 +38,7 @@ app.controller('snippetController', function(snippetService, go, $http) {
       localStorage.setItem('currentBucket', JSON.stringify(bucketObj));
       vm.currentBucket = JSON.parse(localStorage.getItem('currentBucket'));
       vm.currentBucketName = vm.currentBucket.bucket_name;
+      vm.currentBucketDescription = vm.currentBucket.bucket_description;
       vm.snippets = response.data;
     });
 
@@ -45,6 +48,7 @@ app.controller('snippetController', function(snippetService, go, $http) {
   vm.getBuckets = function(username) {
     snippetService.getAllBuckets(username).then(function(response) {
       vm.buckets = response.data;
+      console.log(vm.buckets);
     }); //end get all buckets service
   }; //end get all buckets
 
