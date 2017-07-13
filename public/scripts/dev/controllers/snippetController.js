@@ -10,15 +10,18 @@ app.controller('snippetController', function(snippetService, go, $http) {
   vm.currentBucket = JSON.parse(localStorage.getItem('currentBucket'));
   vm.currentBucketName = vm.currentBucket.bucket_name;
   vm.currentBucketDescription = '';
+  vm.onFeed = false;
 
   //called when first navigated to
   vm.setCurrentBucketToFeed = function() {
     vm.currentBucket = vm.feed;
+    vm.onFeed = false;
     vm.currentBucketDescription = '';
   }; //end set current bucket to feed
 
   //get all snippets by username
   vm.getBucket = function(bucketObj) {
+    console.log(bucketObj);
     if (bucketObj == undefined) {
       let feedId = vm.feed.id;
       bucketObj = {
@@ -28,6 +31,12 @@ app.controller('snippetController', function(snippetService, go, $http) {
       vm.setCurrentBucketToFeed();
     } else if (typeof(bucketObj) == "string") {
       bucketObj = JSON.parse(bucketObj);
+      if (bucketObj.bucket_name == 'feed') {
+        vm.onFeed = false;
+      } else {
+        vm.onFeed = true;
+      }
+
     }
     let objId = bucketObj.id;
     let obj = {
