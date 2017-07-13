@@ -100,5 +100,23 @@ router.delete('/:id', (req, res) => {
   }); //end db.connect
 }); //end delete snippet
 
+//updates the bucket a snippet is in
+router.put('/', (req, res) => {
+  console.log(req.body);
+  db.connect((err, connection, done) => {
+    if (err) {
+      console.log(err);
+      done();
+      res.sendStatus(400);
+    } else {
+      connection.query('UPDATE snippets SET bucket_id = $1 WHERE id = $2', [req.body.bucketId, req.body.snippetId]);
+      done();
+      res.send('updated');
+    }
+  });
+}); //end update bucket
+
+
+
 //exports
 module.exports = router;

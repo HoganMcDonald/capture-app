@@ -1,10 +1,15 @@
-<div class="feedPage">
+<div class="feedPage" ng-init="sc.getBuckets(sc.user)">
 
   <div class="container">
     <div class="snippet">
       <p class="snippetText">{{sc.currentSnippet.snippet_content}}</p>
       <h2 class="watsonHeading">Percieved Emotions</h2>
       <p ng-repeat="emotion in sc.currentSnippet.tone_info.document_tone.tone_categories[0].tones | orderBy:'score' : reverse=true | limitTo:3 ">{{emotion.tone_name}}</p>
+
+      <select class="bucketSelect" ng-model="sc.currentBucket">
+        <option ng-repeat="bucket in sc.buckets" value="{{bucket}}">{{bucket.bucket_name}}</option>
+      </select>
+      <button type="button" class="submitButton" ng-click="sc.updateBucket(sc.currentBucket)">SUBMIT</button>
 
     </div>
   </div>

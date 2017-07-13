@@ -17,8 +17,6 @@ app.controller('snippetController', function(snippetService, go, $http) {
 
   //get all snippets by username
   vm.getBucket = function(bucketObj) {
-    // console.log(JSON.parse(bucketObj));
-    // console.log(vm.feed.id);
     if (bucketObj == undefined) {
       let feedId = vm.feed.id;
       bucketObj = {
@@ -79,5 +77,18 @@ app.controller('snippetController', function(snippetService, go, $http) {
       vm.bucketDescription = 'must fill out all fields';
     } //check if input fields are populated
   }; //end make new bucket
+
+  //update bucket for snippet
+  vm.updateBucket = function(bucket) {
+    let newBucket = JSON.parse(bucket);
+    let obj = {
+      snippetId: vm.currentSnippet.id,
+      bucketId: newBucket.id
+    };
+    $http.put('/snippet', obj).then(function(response) {
+      console.log(response);
+      go.to('/feed');
+    }); //end http
+  }; //end update bucket for snippet
 
 });
