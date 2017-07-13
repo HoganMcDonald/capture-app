@@ -26,12 +26,12 @@ app.controller('snippetController', function(snippetService, go, $http) {
       let feedId = vm.feed.id;
       bucketObj = {
         id: feedId,
-        bucket_name: 'feed'
+        bucket_name: 'Feed'
       };
       vm.setCurrentBucketToFeed();
     } else if (typeof(bucketObj) == "string") {
       bucketObj = JSON.parse(bucketObj);
-      if (bucketObj.bucket_name == 'feed') {
+      if (bucketObj.bucket_name == 'Feed') {
         vm.onFeed = false;
       } else {
         vm.onFeed = true;

@@ -34,11 +34,9 @@ router.post('/', (req, res) => {
         results.push(row);
       });
       checkUsername.on('end', () => {
-        console.log(results);
         //if username exists
         if (results.length > 0) {
           //check hashes
-          console.log(req.body.password, results[0].password);
           bcrypt.compare(req.body.password, results[0].password_hash, function(err, isMatch) {
             if (err) {
               done();

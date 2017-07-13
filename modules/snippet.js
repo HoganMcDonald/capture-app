@@ -48,6 +48,7 @@ router.get('/:user/:bucketName', (req, res) => {
 
 //post snippets
 router.post('/', (req, res) => {
+  console.log(req.body);
   let params = {
     text: req.body.text,
     tones: ['emotion', 'social']
@@ -65,12 +66,14 @@ router.post('/', (req, res) => {
           res.sendStatus(400);
         } else {
           let results = [];
-          let checkBucketIdQuery = "SELECT id FROM buckets JOIN users ON buckets.user_name = users.username WHERE users.username= $1 AND buckets.bucket_name = $2"
+          let checkBucketIdQuery = "SELECT id FROM buckets WHERE user_name = $1 AND bucket_name = $2";
           let checkBucketId = connection.query(checkBucketIdQuery, [req.body.user, req.body.bucket]);
+          // console.log(checkBucketId);
           checkBucketId.on('row', (row) => {
             results.push(row);
           });
           checkBucketId.on('end', () => {
+            console.log(results);
             let postQuery = "INSERT INTO snippets (snippet_content, img_url, bucket_id, tone_info) VALUES ($1, $2, $3, $4);"
             connection.query(postQuery, [req.body.text, req.body.img_url, results[0].id, JSON.stringify(tone)]);
             done();
@@ -115,8 +118,6 @@ router.put('/', (req, res) => {
     }
   });
 }); //end update bucket
-
-
 
 //exports
 module.exports = router;

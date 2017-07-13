@@ -21,11 +21,12 @@ app.controller('captureController', function(go, snippetService) {
   //add snippet to feed
   vm.submitText = function() {
     let newSnippet = {
-      bucket: 'feed',
+      bucket: 'Feed',
       user: localStorage.getItem('user'),
       text: vm.snippetText,
       img_url: vm.snippetImg
     }
+    console.log(newSnippet);
     snippetService.postSnippet(newSnippet).then(function(response) {
       console.log(response);
     });
