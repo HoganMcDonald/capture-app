@@ -47,6 +47,22 @@ router.post('/', (req, res) => {
   }); //end db.connect
 }); //end post new bucket
 
+//delete an bucket
+router.delete('/:id', (req, res) => {
+  db.connect((err, connection, done) => {
+    if (err) {
+      console.log(err);
+      done();
+      res.sendStatus(400);
+    } else {
+      //delete all snippets in bucket
+      connection.query('DELETE FROM snippets WHERE bucket_id = $1', [req.params.id]);
+      connection.query('DELETE FROM buckets WHERE id = $1', [req.params.id]);
+      done();
+      res.sendStatus(200);
+    }
+  }); //end db.connect
+}); //end delete call
 
 //exports
 module.exports = router;

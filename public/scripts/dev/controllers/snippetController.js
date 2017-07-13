@@ -100,4 +100,12 @@ app.controller('snippetController', function(snippetService, go, $http) {
     }); //end http
   }; //end update bucket for snippet
 
+  //delete bucket
+  vm.deleteBucket = function(bucket) {
+    console.log('delete hit', bucket);
+    $http.delete('/bucket/' + bucket.id).then(function(response) {
+      console.log(response);
+    }); //end http delete request
+  }; //end delete bucket
+
 });
