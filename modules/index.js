@@ -3,6 +3,7 @@ const express = require('express'),
   router = express.Router(),
   db = require('./db'),
   bodyParser = require('body-parser'),
+  bcrypt = require('bcrypt'),
   path = require('path');
 
 //uses
@@ -12,7 +13,7 @@ router.use(bodyParser.urlencoded({
 router.use(bodyParser.json());
 
 
-//functions
+//routes
 router.get('/', (req, res) => {
   res.sendFile(path.resolve('public/views/index.html'));
 });
@@ -25,19 +26,39 @@ router.post('/', (req, res) => {
       console.log(err);
       done();
     } else {
-
       let results = [];
-      let checkUsername = connection.query("SELECT username, buckets.id, bucket_name FROM users JOIN buckets ON buckets.user_name = users.username WHERE username = $1 AND password_hash = $2", [req.body.username, req.body.password]);
+      let newQuery = 'SELECT username, password_hash, buckets.id, bucket_name FROM users JOIN buckets ON buckets.user_name = users.username WHERE username = $1'
+      let checkUsername = connection.query(newQuery, [req.body.username]);
+      //push query results to results
       checkUsername.on('row', (row) => {
         results.push(row);
       });
       checkUsername.on('end', () => {
+        console.log(results);
+        //if username exists
         if (results.length > 0) {
-          done();
-          res.send(results);
+          //check hashes
+          console.log(req.body.password, results[0].password);
+          bcrypt.compare(req.body.password, results[0].password_hash, function(err, isMatch) {
+            if (err) {
+              done();
+              console.log('bcrypt failure');
+              res.send('error'); //<--- bcrypt failure
+            } else {
+              if (isMatch) {
+                done();
+                res.send(results);
+              } else {
+                console.log('password incorrect');
+                done();
+                res.send('error'); //<--- password incorrect
+              }
+            }
+          });
         } else {
+          console.log('username does not exist');
           done();
-          res.send('error');
+          res.send('error'); //<--- usernamen does not exist
         } //end check if username and password were a match
       }); //end on end
     } //end if err
