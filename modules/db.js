@@ -1,5 +1,5 @@
 //required
-const pg = require('pg'),
+var pg = require('pg'),
   url = require('url'),
   config = {};
 //globals
