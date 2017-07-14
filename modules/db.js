@@ -1,13 +1,14 @@
 //required
-const pg = require('pg');
-
+const pg = require('pg'),
+  url = require('url'),
+  config = {};
 //globals
 
 if (process.env.DATABASE_URL) {
   var params = url.parse(process.env.DATABASE_URL);
   var auth = params.auth.split(':');
 
-  const config = {
+  config = {
     user: auth[0],
     password: auth[1],
     host: params.hostname,
@@ -21,7 +22,7 @@ if (process.env.DATABASE_URL) {
 
 } else {
 
-  const config = {
+  config = {
     user: process.env.PG_USER || null, //env var: PGUSER
     password: process.env.DATABASE_SECRET || null, //env var: PGPASSWORD
     host: process.env.DATABASE_SERVER || 'localhost', // Server hosting the postgres database
