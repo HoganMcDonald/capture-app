@@ -1,6 +1,3 @@
 .DS_Store
 /node_modules
 config.js
-/modules/watsonCreds.js
-/modules/gmail.js
-/modules/herokuCreds.js

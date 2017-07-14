@@ -12,3 +12,7 @@ MEAN stack
 Watson-developer-cloud
 gulp (dev environment)
 sass
+
+/modules/watsonCreds.js
+/modules/gmail.js
+/modules/herokuCreds.js
