@@ -34,7 +34,7 @@ if (process.env.DATABASE_URL) {
 
 }
 
-const pool = new pg.Pool(config);
+var pool = new pg.Pool(config);
 
 //export
 module.exports = pool;
