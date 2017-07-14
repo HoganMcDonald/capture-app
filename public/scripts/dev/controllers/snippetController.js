@@ -122,6 +122,10 @@ app.controller('snippetController', function(snippetService, go, $http) {
     }); //end http delete request
   }; //end delete bucket
 
-
+  vm.emailBucket = function(obj) {
+    $http.post('/email', obj).then(function(response) {
+      console.log(response);
+    }); //end http
+  } //end email bucket
 
 });

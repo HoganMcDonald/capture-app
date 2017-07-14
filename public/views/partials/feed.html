@@ -20,7 +20,7 @@
 
   <div class="controlls">
     <button type="button" class="goButton deleteButton" ng-if="sc.onFeed" ng-click="sc.deleteBucket(sc.currentBucket); mc.goToCapture()">DELETE</button>
-    <button type="button" class="goButton">EXPORT</button>
+    <button type="button" class="goButton" ng-click="sc.emailBucket(sc.currentBucket)">EXPORT</button>
   </div>
 
 </div>

@@ -2,3 +2,4 @@
 /node_modules
 config.js
 /modules/watsonCreds.js
+/modules/gmail.js

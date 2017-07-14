@@ -5,17 +5,19 @@ const express = require('express'),
   snippet = require('./modules/snippet'),
   bucket = require('./modules/bucket'),
   search = require('./modules/search'),
+  email = require('./modules/email'),
   index = require('./modules/index');
 
 const port = process.env.PORT || 8888;
 
 //uses
-app.use(express.static('public'));
-app.use('/', index);
-app.use('/register', register);
-app.use('/snippet', snippet);
-app.use('/bucket', bucket);
-app.use('/search', search);
+app.use(express.static('public'))
+  .use('/', index)
+  .use('/register', register)
+  .use('/snippet', snippet)
+  .use('/bucket', bucket)
+  .use('/search', search)
+  .use('/email', email);
 
 // spin up server
 app.listen(port, () => {
