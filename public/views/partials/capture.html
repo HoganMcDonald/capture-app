@@ -1,14 +1,14 @@
 <div class="capturePage">
   <div class="container">
     <!-- Upload text -->
-    <button type="button" class="standardButton captureTextButton" ng-click="cc.uploadText()">TEXT</button>
+    <!-- <button type="button" class="standardButton captureTextButton" ng-click="cc.uploadText()">TEXT</button> -->
 
-    <textarea name="name" rows="8" cols="80" ng-if="cc.captureText" class="captureText" placeholder="Text Here" ng-model="cc.snippetText"></textarea>
-    <button type="button" class="submitButton" ng-if="cc.captureText" ng-click="cc.goToSuccess(); mc.checkCurrentLocation(); cc.submitText()">SUBMIT</button>
+    <textarea name="name" rows="15" cols="60" class="captureText" placeholder="Capture your text here" ng-model="cc.snippetText"></textarea>
+    <button type="button" class="submitButton" ng-click="cc.goToSuccess(); mc.checkCurrentLocation(); cc.submitText()">SUBMIT</button>
 
     <!-- Upload image -->
-    <button type="button" class="standardButton captureImageButton" ng-click="cc.uploadImage()" ng-model="cc.snippetImg">IMAGE</button>
+    <!-- <button type="button" class="standardButton captureImageButton" ng-click="cc.uploadImage()" ng-model="cc.snippetImg">IMAGE</button>
 
-    <button type="button" class="submitButton" ng-if="cc.captureImage" ng-click="cc.goToSuccess(); mc.checkCurrentLocation()">SUBMIT</button>
+    <button type="button" class="submitButton" ng-if="cc.captureImage" ng-click="cc.goToSuccess(); mc.checkCurrentLocation()">SUBMIT</button> -->
   </div>
 </div>

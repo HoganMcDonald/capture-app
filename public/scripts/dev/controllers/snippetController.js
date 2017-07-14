@@ -1,13 +1,21 @@
+var currentSnippet = '',
+  currentBucket = '';
+
 app.controller('snippetController', function(snippetService, go, $http) {
   let vm = this;
-  vm.user = localStorage.getItem('user');
-  vm.feed = JSON.parse(localStorage.getItem('feed'));
+  // vm.user = localStorage.getItem('user');
+  vm.user = user;
+  // vm.feed = JSON.parse(localStorage.getItem('feed'));
+  vm.feed = feed;
   vm.snippets = [];
   vm.buckets = [];
-  vm.currentSnippet = JSON.parse(localStorage.getItem('currentSnippet'));
+  // vm.currentSnippet = JSON.parse(localStorage.getItem('currentSnippet'));
+  vm.currentSnippet = currentSnippet;
   //used for fixxing local storage error " unexpected token u..." \/
   // vm.currentBucket = localStorage.getItem('currentBucket');
-  vm.currentBucket = JSON.parse(localStorage.getItem('currentBucket'));
+  // vm.currentBucket = JSON.parse(localStorage.getItem('currentBucket'));
+  vm.currentBucket = currentBucket;
+  console.log(vm.currentBucket);
   vm.currentBucketName = vm.currentBucket.bucket_name;
   vm.currentBucketDescription = '';
   vm.onFeed = false;
@@ -44,8 +52,10 @@ app.controller('snippetController', function(snippetService, go, $http) {
       user: vm.user
     };
     snippetService.getBucket(obj).then(function(response) {
-      localStorage.setItem('currentBucket', JSON.stringify(bucketObj));
-      vm.currentBucket = JSON.parse(localStorage.getItem('currentBucket'));
+      // localStorage.setItem('currentBucket', JSON.stringify(bucketObj));
+      currentBucket = bucketObj;
+      // vm.currentBucket = JSON.parse(localStorage.getItem('currentBucket'));
+      vm.currentBucket = currentBucket;
       vm.currentBucketName = vm.currentBucket.bucket_name;
       vm.currentBucketDescription = vm.currentBucket.bucket_description;
       vm.snippets = response.data;
@@ -55,6 +65,7 @@ app.controller('snippetController', function(snippetService, go, $http) {
 
   //get all buckets
   vm.getBuckets = function(username) {
+    console.log(username);
     snippetService.getAllBuckets(username).then(function(response) {
       vm.buckets = response.data;
     }); //end get all buckets service
@@ -68,7 +79,8 @@ app.controller('snippetController', function(snippetService, go, $http) {
   }; //end delete snippet
 
   vm.viewSnippet = function(obj) {
-    localStorage.setItem('currentSnippet', JSON.stringify(obj));
+    // localStorage.setItem('currentSnippet', JSON.stringify(obj));
+    currentSnippet = obj;
     go.to('/snippet');
   }
 
@@ -90,7 +102,8 @@ app.controller('snippetController', function(snippetService, go, $http) {
 
   //update bucket for snippet
   vm.updateBucket = function(bucket) {
-    let newBucket = JSON.parse(bucket);
+    // let newBucket = JSON.parse(bucket);
+    let newBucket = bucket;
     let obj = {
       snippetId: vm.currentSnippet.id,
       bucketId: newBucket.id

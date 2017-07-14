@@ -1,3 +1,5 @@
+var user = '';
+
 app.controller('authController', function(go, $http) {
   console.log('authController');
   let vm = this;
@@ -22,7 +24,10 @@ app.controller('authController', function(go, $http) {
       } else {
         console.log(response);
         localStorage.setItem('user', response.data[0].username);
+        console.log(localStorage.getItem('user'));
         localStorage.setItem('feed', JSON.stringify(response.data[0]));
+        user = response.data[0].username;
+        feed = response.data[0];
         go.to('/capture');
       }
     }); //end $http
