@@ -4,6 +4,7 @@ const express = require('express'),
   register = require('./modules/register'),
   snippet = require('./modules/snippet'),
   bucket = require('./modules/bucket'),
+  search = require('./modules/search'),
   index = require('./modules/index');
 
 const port = process.env.PORT || 8888;
@@ -14,6 +15,7 @@ app.use('/', index);
 app.use('/register', register);
 app.use('/snippet', snippet);
 app.use('/bucket', bucket);
+app.use('/search', search);
 
 // spin up server
 app.listen(port, () => {

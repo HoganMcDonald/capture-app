@@ -29,4 +29,11 @@ app.service('snippetService', function($http) {
     }); //end $http
   }; //end delete snippet
 
+  //search the db
+  sv.searchDB = function(text) {
+    return $http.get('/search/' + text + '/' + user).then(function(response) {
+      return response;
+    }); //end http
+  }; //end search db
+
 })

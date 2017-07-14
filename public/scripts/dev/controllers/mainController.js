@@ -1,4 +1,5 @@
-app.controller('mainController', function($location, go) {
+var searchResults = [];
+app.controller('mainController', function($location, go, snippetService) {
   console.log('mainController');
   let vm = this;
 
@@ -26,10 +27,12 @@ app.controller('mainController', function($location, go) {
     }
   }; //end checkCurrentLocation()
 
-  //read local storage to see if user is logged in
-
-  //init function
-
+  vm.searchSnippets = function() {
+    snippetService.searchDB(vm.searchInput).then(function(response) {
+      searchResults = response.data;
+      go.to('/search');
+    });
+  };
 
   vm.goToFeed = function() {
     go.to('/feed');

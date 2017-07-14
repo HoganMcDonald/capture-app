@@ -1,0 +1,8 @@
+<div class="feedPage" ng-init="mc.checkCurrentLocation()">
+
+  <div class="container">
+    <div class="snippet" ng-repeat="snippet in sc.searchResults" ng-click="sc.viewSnippet(snippet); mc.checkCurrentLocation()">
+      <p class="snippetText">{{snippet.snippet_content}}</p>
+    </div>
+  </div>
+</div>

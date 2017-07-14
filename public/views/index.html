@@ -55,8 +55,8 @@
 <body ng-app="myApp" ng-controller="mainController as mc" ng-init="mc.checkCurrentLocation()">
 
   <div class="searchBar" id="searchBar" ng-if="mc.showNavBar">
-    <input class="searchBarInput fix-viewport-vh" placeholder="Search">
-    <img src="assets/search-icon.png" ng-click="mc.searchSnippets()" class="searchButton">
+    <input class="searchBarInput fix-viewport-vh" placeholder="SEARCH" ng-model="mc.searchInput">
+    <img src="assets/search-icon.png" ng-click="mc.searchSnippets(mc.searchInput)" class="searchButton">
   </div>
   <div class="searchBarOffset" id="searchBarOffset" ng-if="mc.showNavBar"></div>
 

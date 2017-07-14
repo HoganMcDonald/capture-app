@@ -19,6 +19,7 @@ app.controller('snippetController', function(snippetService, go, $http) {
   vm.currentBucketName = vm.currentBucket.bucket_name;
   vm.currentBucketDescription = '';
   vm.onFeed = false;
+  vm.searchResults = searchResults;
 
   //called when first navigated to
   vm.setCurrentBucketToFeed = function() {
@@ -120,5 +121,7 @@ app.controller('snippetController', function(snippetService, go, $http) {
       console.log(response);
     }); //end http delete request
   }; //end delete bucket
+
+
 
 });
