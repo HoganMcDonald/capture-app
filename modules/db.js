@@ -3,6 +3,8 @@ const pg = require('pg');
 
 //globals
 
+config = {};
+
 if (process.env.DATABASE_URL) {
   var params = url.parse(process.env.DATABASE_URL);
   var auth = params.auth.split(':');
@@ -21,7 +23,7 @@ if (process.env.DATABASE_URL) {
 
 } else {
 
-  const config = {
+  config = {
     database: 'capture',
     host: 'localhost',
     port: 5432,
